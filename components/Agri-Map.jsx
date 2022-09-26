@@ -6,8 +6,12 @@ const AgriMap = () => {
   const [location, setLocation] = useState('');
   if (location !== '') {
     const locals = document.getElementsByClassName(location);
-    for (let local of locals) local.style.fill = '#aa44bb';
+    const overalls = document.getElementsByClassName('overall_classified_svg__overall');
+    for (let overall of overalls) overall.style.fill = '#85B66F';
+    for (let local of locals) local.style.fill = '#aa33ff';
+    document.getElementsByClassName('Agri-Map')[0].style.position = 'relative';
   }
+  const loc = location.replace('overall_classified_svg__', '');
 
   const clickHandler = location => setLocation(location);
 
@@ -17,7 +21,7 @@ const AgriMap = () => {
                       </div> :
                       <div className='Agri-Map'>
                         <Overall size='small' loc={location} clickHandler={clickHandler}/> 
-                        <Specific loc={location}/>
+                        <Specific loc={loc}/>
                       </div>
   )
 }
